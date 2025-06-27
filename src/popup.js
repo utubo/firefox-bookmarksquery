@@ -4,6 +4,7 @@ for (const e of document.getElementsByClassName('i18n')) {
 }
 
 let params;
+let isAutoTitle = false;
 const $title = document.getElementById('title');
 const $parent = document.getElementById('parent');
 const $sort = document.getElementById('sort');
@@ -19,9 +20,7 @@ const addTree = (tree, f, indent) => {
     f.appendChild(o);
     addTree(t.children, f, indent + '\u2003');
   }
-}
-
-let isAutoTitle = false;
+};
 
 const createTitle = () => {
   const items = [];
@@ -38,16 +37,16 @@ const createTitle = () => {
     }
   }
   return items.join(', ');
-}
+};
 
 const autoTitle = () => {
   if (!isAutoTitle) return;
   $title.value = createTitle();
-}
+};
 
 const checkTitle = () => {
   isAutoTitle = !$title.value || $title.value === createTitle();
-}
+};
 
 // Main
 

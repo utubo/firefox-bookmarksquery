@@ -1,18 +1,17 @@
 "use strict";
+
 browser.menus.create({
 	id: 'bookmark_query_add',
 	contexts: ['bookmark'],
 	title: browser.i18n.getMessage('Add query'),
 });
+
 browser.menus.create({
 	id: 'bookmark_query_edit',
 	contexts: ['bookmark'],
 	title: browser.i18n.getMessage('Edit'),
 	visible: false,
 });
-
-let bookmarkId;
-let menuItemId;
 
 browser.menus.onShown.addListener(async info => {
 	if (info.contexts[0] !== 'bookmark') return;
@@ -22,6 +21,9 @@ browser.menus.onShown.addListener(async info => {
 	});
 	browser.menus.refresh();
 });
+
+let bookmarkId;
+let menuItemId;
 
 browser.menus.onClicked.addListener(info => {
 	bookmarkId = info.bookmarkId;
@@ -58,21 +60,21 @@ const createParams = async () => {
 		},
 		tree: tree,
 	};
-}
+};
 
 const msgHandler = async (msg, _, sendResponse) => {
 	switch (msg.method) {
 		case 'get':
-			sendResponse(createParams());
+			sendResponse(await createParams());
 			break;
 		case 'put':
 			if (msg.bookmark.id) {
-				browser.bookmarks.update(msg.bookmark.id, {
+				await browser.bookmarks.update(msg.bookmark.id, {
 					title: msg.bookmark.title,
 					url: msg.bookmark.url,
 				});
 			} else {
-				browser.bookmarks.create(msg.bookmark);
+				await browser.bookmarks.create(msg.bookmark);
 			}
 			sendResponse(null);
 			break;
