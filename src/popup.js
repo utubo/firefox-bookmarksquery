@@ -48,8 +48,37 @@ const checkTitle = () => {
   isAutoTitle = !$title.value || $title.value === createTitle();
 };
 
-// Main
+// Event handler
+document.getElementById('submit').addEventListener('click', async () => {
+  const q = {};
+  for (const i of document.getElementsByClassName('q')) {
+    if (i.value) q[i.id] = i.value;
+  }
+  if (q.parent === 'history') {
+    q.type = '2';
+    delete q.parent;
+  }
+  const bookmark = {
+    parentId: params.bookmark.parentId,
+    title: $title.value,
+    url: 'place:' + (new URLSearchParams(q)).toString(),
+  };
+  if (params.bookmark?.id) {
+    bookmark.id = params.bookmark.id;
+  }
+  await browser.runtime.sendMessage({
+    method: 'put',
+    bookmark: bookmark,
+  });
+  close();
+});
 
+$title.addEventListener('input', checkTitle);
+$sort.addEventListener('change', autoTitle);
+$query.addEventListener('input', autoTitle);
+$tag.addEventListener('input', autoTitle);
+
+// Main
 const init = async () => {
   params = await browser.runtime.sendMessage({ method: 'get' });
 
@@ -76,36 +105,5 @@ const init = async () => {
     }
   }
   checkTitle();
-
-  // Event handler
-  document.getElementById('submit').addEventListener('click', async () => {
-    const q = {};
-    for (const i of document.getElementsByClassName('q')) {
-      if (i.value) q[i.id] = i.value;
-    }
-    if (q.parent === 'history') {
-      q.type = '2';
-      delete q.parent;
-    }
-    const bookmark = {
-      parentId: params.bookmark.parentId,
-      title: $title.value,
-      url: 'place:' + (new URLSearchParams(q)).toString(),
-    };
-    if (params.bookmark?.id) {
-      bookmark.id = params.bookmark.id;
-    }
-    await browser.runtime.sendMessage({
-      method: 'put',
-      bookmark: bookmark,
-    });
-    close();
-  });
-
-  $title.addEventListener('input', checkTitle);
-  $sort.addEventListener('change', autoTitle);
-  $query.addEventListener('input', autoTitle);
-  $tag.addEventListener('input', autoTitle);
 };
-
 init();
