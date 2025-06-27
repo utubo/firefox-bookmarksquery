@@ -1,0 +1,60 @@
+{
+  "extensionName": {
+    "message": "Bookmark query"
+  },
+  "extensionDescription": {
+    "message": "Add 'Add query' to the bookmark menu."
+  },
+  "Add query": {
+    "message": "Add Query"
+  },
+  "Edit": {
+    "message": "Edit"
+  },
+  "title": {
+    "message": "Name"
+  },
+  "search target": {
+    "message": "Search target"
+  },
+  "sort": {
+    "message": "Sort"
+  },
+  "query": {
+    "message": "Keyword"
+  },
+  "tag": {
+    "message": "Tag"
+  },
+  "limit": {
+    "message": "Limit"
+  },
+  "all": {
+    "message": "All"
+  },
+  "history": {
+    "message": "🕒️History"
+  },
+  "all_bookmarks": {
+    "message": "All bookmarks"
+  },
+  "none": {
+    "message": "None"
+  },
+  "URL": {
+    "message": "URL"
+  },
+  "Last visited": {
+    "message": "Last visited"
+  },
+  "Most visited": {
+    "message": "Most visited"
+  },
+  "Created at": {
+    "message": "Created at"
+  },
+  "sort by": {
+    "message": "Sort by value"
+  }
+}
+

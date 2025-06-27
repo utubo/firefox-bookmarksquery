@@ -1,0 +1,31 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 32 32"
+  opacity="context-fill-opacity"
+  stroke-width="2" stroke-linecap="round"
+  fill="none"
+>
+<style>
+.lupe { stroke: #0c0c0d; }
+.star { fill: #0c0c0d; }
+@media (prefers-color-scheme: dark) {
+  .lupe { stroke: #fbfbfe; }
+  .star { fill: #fbfbfe; }
+}
+</style>
+  <path class="lupe" d="M26 29l-4-6"/>
+  <circle class="lupe" cx="16" cy="15" r="10"/>
+  <path class="star" d="
+    M16 8
+    l1.8 5
+    h5
+    l-3.9 3.2
+    l1.5 5
+    l-4.2-3
+    l-4.5 3
+    l1.6-5
+    l-4.2-3.2
+    h5.2
+  "/>
+</svg>
+

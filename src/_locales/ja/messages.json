@@ -1,0 +1,60 @@
+{
+  "extensionName": {
+    "message": "ブックマーククエリ"
+  },
+  "extensionDescription": {
+    "message": "ブックマークメニューに「クエリを追加」を追加します"
+  },
+  "Add query": {
+    "message": "クエリを追加"
+  },
+  "Edit": {
+    "message": "編集"
+  },
+  "title": {
+    "message": "名前"
+  },
+  "search target": {
+    "message": "検索範囲"
+  },
+  "sort": {
+    "message": "ソート"
+  },
+  "query": {
+    "message": "キーワード"
+  },
+  "tag": {
+    "message": "タグ"
+  },
+  "limit": {
+    "message": "件数"
+  },
+  "all": {
+    "message": "全て"
+  },
+  "history": {
+    "message": "🕒️履歴"
+  },
+  "all_bookmarks": {
+    "message": "全てのブックマーク"
+  },
+  "none": {
+    "message": "無し"
+  },
+  "URL": {
+    "message": "URL"
+  },
+  "Last visited": {
+    "message": "アクセス日時"
+  },
+  "Most visited": {
+    "message": "アクセス回数"
+  },
+  "Created at": {
+    "message": "ブックマーク作成日"
+  },
+  "sort by": {
+    "message": "value順"
+  }
+}
+
