@@ -11,16 +11,38 @@ const $sort = document.getElementById('sort');
 const $query = document.getElementById('query');
 const $tag = document.getElementById('tag');
 
-const addTree = (tree, f, indent) => {
+const addTree = (tree, f, parent = null, indent = '') => {
   if (!tree) return;
   for (const t of tree) {
     const o = document.createElement('OPTION');
     o.value = t.id;
     o.textContent = `${indent}📂${t.title}`;
+    o.setAttribute('data-parent', parent?.id);
+    o.style.display = (!parent || parent.opened) ? 'block' : 'none';
     f.appendChild(o);
-    addTree(t.children, f, indent + '\u2003');
+    addTree(t.children, f, t, indent + '\u2003');
   }
 };
+
+const openTree = () => {
+  let i = $parent.selectedIndex;
+  while (true) {
+    i ++;
+    const o = $parent.options[i];
+    if (o?.getAttribute('data-parent') !== $parent.value) return;
+    o.style.display = 'block';
+  }
+}
+
+const findParent = tree => {
+  if (!tree) return;
+  for (const t of tree) {
+    if (t.id === params.bookmark.parentId || findParent(t.children)) {
+      t.opened = true;
+      return true;
+    }
+  }
+}
 
 const createTitle = () => {
   const items = [];
@@ -48,8 +70,7 @@ const checkTitle = () => {
   isAutoTitle = !$title.value || $title.value === createTitle();
 };
 
-// Event handler
-document.getElementById('submit').addEventListener('click', async () => {
+const onSubmit = async () => {
   const q = {};
   for (const i of document.getElementsByClassName('q')) {
     if (i.value) q[i.id] = i.value;
@@ -71,20 +92,24 @@ document.getElementById('submit').addEventListener('click', async () => {
     bookmark: bookmark,
   });
   close();
-});
+};
 
+// Event handler
+$parent.addEventListener('change', openTree);
 $title.addEventListener('input', checkTitle);
 $sort.addEventListener('change', autoTitle);
 $query.addEventListener('input', autoTitle);
 $tag.addEventListener('input', autoTitle);
+document.getElementById('submit').addEventListener('click', onSubmit);
 
 // Main
 const init = async () => {
   params = await browser.runtime.sendMessage({ method: 'get' });
 
   // Setup parent tree
+  findParent(params.tree);
   const f = document.createDocumentFragment();
-  addTree(params.tree, f, '');
+  addTree(params.tree, f);
   $parent.appendChild(f);
 
   // Setup default parameters
@@ -107,3 +132,4 @@ const init = async () => {
   checkTitle();
 };
 init();
+
