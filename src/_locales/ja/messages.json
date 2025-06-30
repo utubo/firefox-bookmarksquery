@@ -5,16 +5,16 @@
   "extensionDescription": {
     "message": "ブックマークメニューに「クエリを追加」を追加します"
   },
-  "Add query": {
+  "addQuery": {
     "message": "クエリを追加"
   },
-  "Edit": {
-    "message": "編集"
+  "editQuery": {
+    "message": "クエリを編集"
   },
   "title": {
     "message": "名前"
   },
-  "search target": {
+  "searchTarget": {
     "message": "検索範囲"
   },
   "sort": {
@@ -29,32 +29,41 @@
   "limit": {
     "message": "件数"
   },
+  "queryAdvanced": {
+    "message": "実行クエリ(高度な設定)"
+  },
   "all": {
     "message": "全て"
   },
   "history": {
     "message": "🕒️履歴"
   },
-  "all_bookmarks": {
+  "allBookmarks": {
     "message": "全てのブックマーク"
   },
   "none": {
     "message": "無し"
   },
-  "URL": {
+  "url": {
     "message": "URL"
   },
-  "Last visited": {
+  "lastVisited": {
     "message": "アクセス日時"
   },
-  "Most visited": {
+  "mostVisited": {
     "message": "アクセス回数"
   },
-  "Created at": {
+  "createdAt": {
     "message": "ブックマーク作成日"
   },
-  "sort by": {
+  "sortBy": {
     "message": "value順"
+  },
+  "save": {
+    "message": "保存"
+  },
+  "restartRequired": {
+    "message": "(Firefoxの再起動が必要です)"
   }
 }
 

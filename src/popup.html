@@ -1,91 +1,104 @@
 <!DOCTYPE html>
-
 <html>
-  <head>
-    <meta charset="utf-8">
-    <style>
-      :root {
-        --bg: #fff;
-        --fg: #000;
-        --accent: #0062fa;
-        --bg2: #fff;
-        --bd: #9f9ea1;
-      }
-      body {
-        background: var(--bg);
-        color: var(--fg);
-        font-size: .8rem;
-        font-family: system-ui;
-        margin: 1em;
-        width: 20em;
-      }
-      .page-title {
-        line-height: 1em;
-        margin-bottom: 1em;
-      }
-      .icon {
-        height: 1em;
-        margin-right: .2em;
-        vertical-align: top;
-        width: 1em;
-      }
-      label, input, select {
-        display: block;
-      }
-      input, select {
-        appearance: none;
-        background: var(--bg2);
-        border: 1px solid;
-        border-color: var(--bd);
-        border-radius: .4em;
-        color: var(--fg);
-        margin: .2em 0 1em 0;
-        outline: none;
-        width: calc(100% - 1em);
-        padding: .5em;
-      }
-      input:focus, select:focus {
-        border-color: var(--accent);
-        outline: 2px solid;
-        outline-color: var(--accent);
-      }
-      #parent {
-        padding: 0;
-        option {
-          padding: .5em;
-        }
-        option:checked {
-          background: var(--accent);
-          color: var(--bg2);
-        }
-      }
-      .button-container {
-        text-align: right;
-      }
-      #submit {
-        background: var(--accent);
-        border: none;
-        border-radius: .4em;
-        border-color: var(--accent);
-        color: var(--bg2);
-        padding: .5em 1em;
-      }
-      #submit:focus {
-        outline: 4px double;
-        outline-color: var(--accent);
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --bg: #42414d;
-          --fg: #fbfbfe;
-          --accent: #00cadb;
-          --bg2: #23222b;
-          --bd: #7c7b82;
-        }
-      }
-    </style>
-  </head>
-
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --bg: #fff;
+    --fg: #000;
+    --accent: #0062fa;
+    --bg2: #fff;
+    --bd: #9f9ea1;
+  }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-size: .8rem;
+    font-family: system-ui;
+    margin: 1em;
+    width: 20em;
+  }
+  .page-title {
+    line-height: 1rem;
+    margin-bottom: 1em;
+  }
+  .icon {
+    height: 1rem;
+    margin-right: .2em;
+    vertical-align: top;
+    width: 1rem;
+  }
+  .sub {
+    margin: 1em 0;
+    max-height: 26em;
+    outline: none;
+    overflow-y: scroll;
+    input:last-child {
+      margin-bottom: 2px;
+    }
+  }
+  label, input, select {
+    display: block;
+  }
+  input, select {
+    appearance: none;
+    background: var(--bg2);
+    border: none;
+    border-radius: .4em;
+    box-sizing: border-box;
+    color: var(--fg);
+    margin: .2em 0 1em 2px;
+    outline: 1px solid;
+    outline-color: var(--bd);
+    width: calc(100% - 1em - 4px);
+    padding: .5em;
+  }
+  input:focus, select:focus {
+    outline: 2px solid;
+    outline-color: var(--accent);
+  }
+  #title {
+    margin-bottom: 0;
+  }
+  #parent {
+    padding: 0;
+    option {
+      padding: .5em;
+    }
+    option:checked {
+      background: var(--accent);
+      color: var(--bg2);
+    }
+  }
+  .button-container {
+    text-align: right;
+  }
+  #submit {
+    background: var(--accent);
+    border: none;
+    border-radius: .4em;
+    border-color: var(--accent);
+    color: var(--bg2);
+    padding: .5em 1em;
+  }
+  #submit:focus {
+    outline: 4px double;
+    outline-color: var(--accent);
+  }
+  #restartRequired {
+    display: none;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #42414d;
+      --fg: #fbfbfe;
+      --accent: #00cadb;
+      --bg2: #23222b;
+      --bd: #7c7b82;
+    }
+  }
+</style>
+</head>
 <body>
   <div class="page-title">
     <img src="icon.svg" class="icon"><span class="i18n">extensionName</span>
@@ -94,45 +107,46 @@
   <label class="i18n" for="title">title</label>
   <input id="title">
 
-  <label class='i18n' for="parent">search target</label>
-  <select id="parent" class="q" size="4">
-    <option class="i18n" value="" class="i18n" selected>all</option>
-    <option class="i18n" value="history" class="i18n">history</option>
-  </select>
+  <div class="sub" tabindex="-1">
+    <label class="i18n" for="parent">searchTarget</label>
+    <select id="parent" class="q" size="4">
+      <option class="i18n" value="" selected>all</option>
+      <option class="i18n" value="history">history</option>
+    </select>
 
-  <label class='i18n' for="sort">sort</label>
-  <select id="sort" class="q">
-    <option class="i18n" value="" selected>none</option>
-    <option class="i18n" value="1">title</option>
-    <option class="i18n" value="2">URL</option>
-    <option class="i18n" value="4">Last visited</option>
-    <option class="i18n" value="8">Most visited</option>
-    <option class="i18n" value="12">Created at</option>
-  </select>
+    <label class="i18n" for="sort">sort</label>
+    <select id="sort" class="q">
+      <option class="i18n" value="" selected>none</option>
+      <option class="i18n" value="1">title</option>
+      <option class="i18n" value="2">url</option>
+      <option class="i18n" value="4">lastVisited</option>
+      <option class="i18n" value="8">mostVisited</option>
+      <option class="i18n" value="12">createdAt</option>
+    </select>
 
-  <!--
-  <label class='i18n' for="group">Grouping</label>
-  <select id="group" class="q">
-    <option class="i18n" value="" selected>none</option>
-    <option class="i18n" value="day">day</option>
-    <option class="i18n" value="site">site</option>
-  </select>
-  -->
+    <label class="i18n" for="maxResults">limit</label>
+    <input id="maxResults" class="q" value="20" type="number">
 
-  <label class='i18n' for="query">query</label>
-  <input id="query" class="q">
+    <label class="i18n" for="query">query</label>
+    <input id="query" class="q">
 
-  <label class='i18n' for="tag">tag</label>
-  <input id="tag" class="q">
+    <label class="i18n" for="tag">tag</label>
+    <input id="tag" class="q">
 
-  <label class='i18n' for="maxResults">Limit</label>
-  <input id="maxResults" class="q" value="20" type="number">
+    <label class="i18n" for="uri">url</label>
+    <input id="uri" class="q">
+
+    <label class="i18n" for="bookmarkURL">queryAdvanced</label>
+    <input id="bookmarkURL">
+  </div>
 
   <div class="button-container">
-    <button id="submit">OK</button>
+    <button id="submit">
+      <span class="i18n">save</span>
+      <span id="restartRequired"class="i18n">restartRequired</span>
+    </button>
   </div>
 
   <script src="popup.js"></script>
 </body>
-
 </html>

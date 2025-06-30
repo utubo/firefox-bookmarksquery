@@ -5,16 +5,16 @@
   "extensionDescription": {
     "message": "Add 'Add query' to the bookmark menu."
   },
-  "Add query": {
+  "addQuery": {
     "message": "Add Query"
   },
-  "Edit": {
-    "message": "Edit"
+  "editQuery": {
+    "message": "Edit Query"
   },
   "title": {
     "message": "Name"
   },
-  "search target": {
+  "searchTarget": {
     "message": "Search target"
   },
   "sort": {
@@ -29,32 +29,41 @@
   "limit": {
     "message": "Limit"
   },
+  "queryAdvanced": {
+    "message": "Query (Advanced)"
+  },
   "all": {
     "message": "All"
   },
   "history": {
     "message": "🕒️History"
   },
-  "all_bookmarks": {
+  "allBookmarks": {
     "message": "All bookmarks"
   },
   "none": {
     "message": "None"
   },
-  "URL": {
+  "url": {
     "message": "URL"
   },
-  "Last visited": {
+  "lastVisited": {
     "message": "Last visited"
   },
-  "Most visited": {
+  "mostVisited": {
     "message": "Most visited"
   },
-  "Created at": {
+  "createdAt": {
     "message": "Created at"
   },
-  "sort by": {
+  "sortBy": {
     "message": "Sort by value"
+  },
+  "save": {
+    "message": "Save"
+  },
+  "restartRequired": {
+    "message": "(Restart Firefox to Apply)"
   }
 }
 

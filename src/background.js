@@ -3,22 +3,22 @@
 browser.menus.create({
 	id: 'bookmark_query_add',
 	contexts: ['bookmark'],
-	title: browser.i18n.getMessage('Add query'),
+	title: browser.i18n.getMessage('addQuery'),
 });
 
 browser.menus.create({
 	id: 'bookmark_query_edit',
 	contexts: ['bookmark'],
-	title: browser.i18n.getMessage('Edit'),
+	title: browser.i18n.getMessage('editQuery'),
 	visible: false,
 });
 
 browser.menus.onShown.addListener(async info => {
 	if (info.contexts[0] !== 'bookmark') return;
 	const [bookmark] = await browser.bookmarks.get(info.bookmarkId);
-	browser.menus.update('bookmark_query_edit', {
-		visible: bookmark.type === 'bookmark' &&  bookmark.url.startsWith('place:')
-	});
+	const isQuery = bookmark.type === 'bookmark' &&  bookmark.url.startsWith('place:');
+	browser.menus.update('bookmark_query_add', { visible: !isQuery });
+	browser.menus.update('bookmark_query_edit', { visible: isQuery });
 	browser.menus.refresh();
 });
 
@@ -47,7 +47,7 @@ const createTree = nodes => {
 const createParams = async () => {
 	const [bookmark] = await browser.bookmarks.get(bookmarkId);
 	const tree = createTree(await browser.bookmarks.getTree());
-	tree[0].title = browser.i18n.getMessage('all_bookmarks');
+	tree[0].title = browser.i18n.getMessage('allBookmarks');
 	const parentId = bookmark.type === 'folder'
 		? bookmark.id
 		: bookmark.parentId ?? tree[0].id;
