@@ -96,6 +96,10 @@ const setBookmarkURL = () => {
       q.type = '2';
       delete q.parent;
       break;
+    case 'tags':
+      q.type = '6';
+      delete q.parent;
+      break;
     default:
       delete q.type;
       break;
@@ -121,6 +125,9 @@ const setFormValues = () => {
       break;
     case '2':
       $parent.value = 'history';
+      break;
+    case '6':
+      $parent.value = 'tags';
       break;
     default:
       if (!q.parent) {

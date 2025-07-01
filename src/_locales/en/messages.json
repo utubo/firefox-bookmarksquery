@@ -38,6 +38,9 @@
   "history": {
     "message": "🕒️History"
   },
+  "tags": {
+    "message": "🏷️Tags"
+  },
   "allBookmarks": {
     "message": "All bookmarks"
   },
