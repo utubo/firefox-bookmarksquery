@@ -59,6 +59,9 @@
   "createdAt": {
     "message": "ブックマーク作成日"
   },
+  "taggedAt": {
+    "message": "タグ付けした日"
+  },
   "sortBy": {
     "message": "value順"
   },

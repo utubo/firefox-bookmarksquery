@@ -59,6 +59,9 @@
   "createdAt": {
     "message": "Created at"
   },
+  "taggedAt": {
+    "message": "Tagged at"
+  },
   "sortBy": {
     "message": "Sort by value"
   },
