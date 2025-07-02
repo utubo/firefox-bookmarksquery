@@ -66,11 +66,18 @@
     padding: 0;
     option {
       padding: .5em;
+      transition: .2s;
     }
     option:checked {
       background: var(--accent);
       color: var(--bg2);
     }
+  }
+  .loading option {
+    opacity: 0;
+  }
+  .hidden {
+    display: none;
   }
   .button-container {
     text-align: right;
@@ -111,7 +118,7 @@
 
   <div class="sub" tabindex="-1">
     <label class="i18n" for="parent">searchTarget</label>
-    <select id="parent" class="q" size="4" multiple>
+    <select id="parent" class="q loading" size="4" multiple>
       <option class="i18n" value="" selected>all</option>
       <option class="i18n" value="history">history</option>
       <option class="i18n" value="tags">tags</option>

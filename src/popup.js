@@ -23,9 +23,11 @@ const addTree = (tree, f, parentNode = null, indent = '') => {
     const o = document.createElement('OPTION');
     o.value = t.id;
     o.id = `p-${t.id}`;
-    o.textContent = `${indent}📂${t.title}`;
+    o.textContent = `${indent}📁${t.title}`;
     o.setAttribute('data-parent', parentNode?.id);
-    o.style.display = !parentNode ? 'block' : 'none';
+    if (parentNode) {
+      o.classList.add('hidden');
+    }
     f.appendChild(o);
     addTree(t.children, f, t, indent + '\u2003');
   }
@@ -36,10 +38,11 @@ const openTree = id => {
   if (!t) return {};
   if (t.getAttribute('data-open')) return t;
   t.setAttribute('data-open', true);
+  t.textContent = t.textContent.replace(/📁/, '📂');
   const children = Array.from($parent.options)
     .filter(option => option.getAttribute('data-parent') === id);
   for (const c of children) {
-    c.style.display = 'block';
+    c.classList.remove('hidden');
   }
   openTree(t.getAttribute('data-parent'));
   return t;
@@ -244,6 +247,7 @@ const init = async () => {
   }
   checkTitle();
   $title.focus();
+  $parent.classList.remove('loading');
 };
 init();
 
