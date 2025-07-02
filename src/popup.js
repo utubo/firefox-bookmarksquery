@@ -14,6 +14,7 @@ const $sort = byId('sort');
 const $query = byId('query');
 const $tag = byId('tag');
 const $bookmarkURL = byId('bookmarkURL');
+const $all = document.getElementsByClassName('q')
 
 // Folder tree
 const addTree = (tree, f, parentNode = null, indent = '') => {
@@ -106,7 +107,7 @@ const getURLParams = () => {
 
 const setBookmarkURL = () => {
   const q = getURLParams();
-  for (const i of document.getElementsByClassName('q')) {
+  for (const i of $all) {
     if (i.value) q[i.id] = i.value;
   }
   q.parent = selectedParents;
@@ -143,8 +144,8 @@ const setBookmarkURL = () => {
 
 const setFormValues = () => {
   const q = getURLParams();
-  for (const [k, v] of Object.entries(q)) {
-    (byId(k) ?? {}).value = v;
+  for (const i of $all) {
+    i.value = q[i.id] ?? '';
   }
   $parent.selectedIndex = -1;
   setParentMultiple(1 < q.parent?.length);
