@@ -117,7 +117,7 @@ const setBookmarkURL = () => {
       delete q.parent;
       break;
     case 'history':
-      q.queryType = '1';
+      q.queryType = '0';
       delete q.parent;
       delete q.type;
       break;
@@ -163,12 +163,12 @@ const setFormValues = () => {
   }
   switch (q.queryType) {
     case '0':
+      $parent.value = 'history';
+      break;
+    case '1':
       if (!q.parent?.[0]) {
         $parent.value = popupArgs.tree[0].id;
       }
-      break;
-    case '1':
-      $parent.value = 'history';
       break;
   }
 };
