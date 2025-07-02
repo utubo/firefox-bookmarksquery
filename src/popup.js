@@ -102,7 +102,7 @@ const getURLParams = () => {
     }
   }
   return q;
-}
+};
 
 const setBookmarkURL = () => {
   const q = getURLParams();
@@ -111,20 +111,24 @@ const setBookmarkURL = () => {
   }
   q.parent = selectedParents;
   switch (q.parent?.[0]) {
-    case popupArgs.tree[0].id:
-      q.type = '1';
+    case '':
+      delete q.type;
+      delete q.queryType;
       delete q.parent;
       break;
     case 'history':
-      q.type = '2';
+      q.queryType = '1';
       delete q.parent;
+      delete q.type;
       break;
     case 'tags':
       q.type = '6';
       delete q.parent;
+      delete q.queryType;
       break;
     default:
       delete q.type;
+      delete q.queryType;
       break;
   }
   const searchParams = new URLSearchParams();
@@ -135,7 +139,7 @@ const setBookmarkURL = () => {
   }
   const url = 'place:' + searchParams.toString();
   $bookmarkURL.value = url;
-}
+};
 
 const setFormValues = () => {
   const q = getURLParams();
@@ -149,14 +153,6 @@ const setFormValues = () => {
     (byId(`p-${p}`) ?? {}).selected = true;
   }
   switch (q.type) {
-    case '1':
-      if (!q.parent?.[0]) {
-        $parent.value = popupArgs.tree[0].id;
-      }
-      break;
-    case '2':
-      $parent.value = 'history';
-      break;
     case '6':
       $parent.value = 'tags';
       break;
@@ -165,7 +161,17 @@ const setFormValues = () => {
         $parent.value = '';
       }
   }
-}
+  switch (q.queryType) {
+    case '0':
+      if (!q.parent?.[0]) {
+        $parent.value = popupArgs.tree[0].id;
+      }
+      break;
+    case '1':
+      $parent.value = 'history';
+      break;
+  }
+};
 
 // Event handler
 let isOnChangeParams = false;
@@ -183,7 +189,7 @@ const onChangeParams = e => {
     setFormValues();
     autoTitle();
   }
-}
+};
 
 const onSubmit = async () => {
   // Do not fix query to save any query.
