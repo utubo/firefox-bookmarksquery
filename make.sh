@@ -2,7 +2,7 @@
 
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 cd $SCRIPT_DIR/src
-zip -r ../bookmarkquery.zip *
+zip -r ../bookmarksquery.zip *
 cd ..
-mv -f bookmarkquery.zip bookmarkquery.xpi
+mv -f bookmarksquery.zip bookmarksquery.xpi
 
