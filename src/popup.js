@@ -91,7 +91,7 @@ const checkTitle = () => {
 };
 
 // Load / Save
-const getURLParams = () => {
+const getPlacesQueryParams = () => {
   const p = new URLSearchParams($placesQuery.value.replace(/^place:/, ''));
   const q = { parent: [] };
   for (const [k, v] of p.entries()) {
@@ -105,7 +105,7 @@ const getURLParams = () => {
 };
 
 const setPlacesQuery = () => {
-  const q = getURLParams();
+  const q = getPlacesQueryParams();
   for (const i of $all) {
     if (i.value) q[i.id] = i.value;
   }
@@ -142,7 +142,7 @@ const setPlacesQuery = () => {
 };
 
 const setFormValues = () => {
-  const q = getURLParams();
+  const q = getPlacesQueryParams();
   for (const i of $all) {
     i.value = q[i.id] ?? '';
   }
