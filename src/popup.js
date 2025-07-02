@@ -11,7 +11,6 @@ let selectedParents = [];
 const $title = byId('title');
 const $parent = byId('parent');
 const $sort = byId('sort');
-const $query = byId('query');
 const $tag = byId('tag');
 const $bookmarkURL = byId('bookmarkURL');
 const $all = document.getElementsByClassName('q')
@@ -67,7 +66,7 @@ const onSelectParent = () => {
 // Title
 const createTitle = () => {
   const items = [];
-  for (const id of ['sort', 'query', 'tag']) {
+  for (const id of ['sort', 'tag']) {
     const f = byId(id);
     if (!f?.value) continue;
     if (id === 'sort') {
