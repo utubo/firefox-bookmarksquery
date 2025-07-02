@@ -107,7 +107,7 @@ const getPlacesQueryParams = () => {
 const setPlacesQuery = () => {
   const q = getPlacesQueryParams();
   for (const i of $all) {
-    if (i.value) q[i.id] = i.value;
+    q[i.id] = i.value;
   }
   q.parent = selectedParents;
   switch (q.parent?.[0]) {
@@ -130,6 +130,9 @@ const setPlacesQuery = () => {
       delete q.type;
       delete q.queryType;
       break;
+  }
+  for (const [k,v] of Object.entries(q)) {
+    if (!v) delete q[k];
   }
   const searchParams = new URLSearchParams();
   for (const [k, v] of Object.entries(q)) {
