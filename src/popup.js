@@ -14,6 +14,7 @@ const $sort = byId('sort');
 const $tag = byId('tag');
 const $placesQuery = byId('placesQuery');
 const $all = document.getElementsByClassName('q')
+const TREE_OPEN_KEYS = [' ', 'Enter'];
 
 // Folder tree
 const addTree = (tree, f, parentNode = null, indent = '') => {
@@ -35,13 +36,12 @@ const openTree = id => {
   if (!t) return {};
   if (t.getAttribute('data-open')) return t;
   t.setAttribute('data-open', true);
-  const p = t.getAttribute('data-parent');
   const children = Array.from($parent.options)
     .filter(option => option.getAttribute('data-parent') === id);
-  for (const o of children) {
-    o.style.display = 'block';
+  for (const c of children) {
+    c.style.display = 'block';
   }
-  openTree(p);
+  openTree(t.getAttribute('data-parent'));
   return t;
 };
 
@@ -54,13 +54,12 @@ const setParentMultiple = b => {
 };
 
 const onSelectParent = () => {
-  let i = $parent.selectedIndex;
-  setParentMultiple(2 < i);
-  selectedParents = Array.from($parent.options)
+  const isMultiple = 2 < $parent.selectedIndex;
+  setParentMultiple(isMultiple);
+  selectedParents = isMultiple ? Array.from($parent.options)
     .filter(option => option.selected)
-    .map(option => option.value);
+    .map(option => option.value) : $parent.value;
   setPlacesQuery();
-  openTree($parent.options[i].value);
 };
 
 // Title
@@ -215,6 +214,8 @@ const onSubmit = async () => {
 addEventListener('input', onChangeParams);
 addEventListener('change', onChangeParams);
 $parent.addEventListener('change', onSelectParent);
+$parent.addEventListener('click', e => openTree(e.target.value));
+$parent.addEventListener('keydown', e => TREE_OPEN_KEYS.includes(e.key) && openTree(e.target.value));
 $parent.addEventListener('focus', () => $parent.parentNode.scrollTo(0, 0));
 byId('submit').addEventListener('click', onSubmit);
 
@@ -242,6 +243,7 @@ const init = async () => {
     openTree(p).selected = true;
   }
   checkTitle();
+  $title.focus();
 };
 init();
 
