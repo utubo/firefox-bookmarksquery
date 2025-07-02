@@ -12,7 +12,7 @@ const $title = byId('title');
 const $parent = byId('parent');
 const $sort = byId('sort');
 const $tag = byId('tag');
-const $bookmarkURL = byId('bookmarkURL');
+const $placesQuery = byId('placesQuery');
 const $all = document.getElementsByClassName('q')
 
 // Folder tree
@@ -59,7 +59,7 @@ const onSelectParent = () => {
   selectedParents = Array.from($parent.options)
     .filter(option => option.selected)
     .map(option => option.value);
-  setBookmarkURL();
+  setPlacesQuery();
   openTree($parent.options[i].value);
 };
 
@@ -92,7 +92,7 @@ const checkTitle = () => {
 
 // Load / Save
 const getURLParams = () => {
-  const p = new URLSearchParams($bookmarkURL.value.replace(/^place:/, ''));
+  const p = new URLSearchParams($placesQuery.value.replace(/^place:/, ''));
   const q = { parent: [] };
   for (const [k, v] of p.entries()) {
     if (Array.isArray(q[k])) {
@@ -104,7 +104,7 @@ const getURLParams = () => {
   return q;
 };
 
-const setBookmarkURL = () => {
+const setPlacesQuery = () => {
   const q = getURLParams();
   for (const i of $all) {
     if (i.value) q[i.id] = i.value;
@@ -138,7 +138,7 @@ const setBookmarkURL = () => {
     }
   }
   const url = 'place:' + searchParams.toString();
-  $bookmarkURL.value = url;
+  $placesQuery.value = url;
 };
 
 const setFormValues = () => {
@@ -183,8 +183,8 @@ const onChangeParams = e => {
   });
   if (e.target.classList.contains('q')) {
     autoTitle();
-    setBookmarkURL();
-  } else if (e.target.id = 'bookmarkURL') {
+    setPlacesQuery();
+  } else if (e.target.id = 'placesQuery') {
     checkTitle();
     setFormValues();
     autoTitle();
@@ -193,11 +193,11 @@ const onChangeParams = e => {
 
 const onSubmit = async () => {
   // Do not fix query to save any query.
-  // setBookmarkURL();
+  // setPlacesQuery();
   const bookmark = {
     parentId: popupArgs.bookmark.parentId,
     title: $title.value,
-    url: $bookmarkURL.value,
+    url: $placesQuery.value,
   };
   if (popupArgs.bookmark?.id) {
     bookmark.id = popupArgs.bookmark.id;
@@ -227,13 +227,13 @@ const init = async () => {
   // Setup default parameters
   if (popupArgs.bookmark.id) {
     $title.value = popupArgs.bookmark.title;
-    $bookmarkURL.value = popupArgs.bookmark.url;
+    $placesQuery.value = popupArgs.bookmark.url;
     setFormValues();
     byId('restartRequired').style.display = 'inline';
   } else {
     selectedParents = [popupArgs.bookmark.parentId];
     $parent.value = selectedParents[0];
-    setBookmarkURL();
+    setPlacesQuery();
   }
   for (const p of selectedParents) {
     openTree(p).selected = true;
