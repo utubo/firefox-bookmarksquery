@@ -154,11 +154,12 @@ const onChangeParams = e => {
 }
 
 const onSubmit = async () => {
-  const url = setBookmarkURL();
+  // Do not fix query to save any query.
+  // const url = setBookmarkURL();
   const bookmark = {
     parentId: params.bookmark.parentId,
     title: $title.value,
-    url: url,
+    url: $bookmarkURL.value,
   };
   if (params.bookmark?.id) {
     bookmark.id = params.bookmark.id;
