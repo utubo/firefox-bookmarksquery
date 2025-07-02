@@ -61,7 +61,7 @@ const onSelectParent = () => {
   setParentMultiple(isMultiple);
   selectedParents = isMultiple ? Array.from($parent.options)
     .filter(option => option.selected)
-    .map(option => option.value) : $parent.value;
+    .map(option => option.value) : [$parent.value];
   setPlacesQuery();
 };
 
