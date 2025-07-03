@@ -251,6 +251,8 @@ const init = async () => {
     openTree(p).selected = true;
   }
   checkTitle();
+
+  // After initialized
   $title.focus();
   $parent.classList.remove('loading');
 };
