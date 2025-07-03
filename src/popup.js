@@ -14,9 +14,10 @@ const $sort = byId('sort');
 const $tag = byId('tag');
 const $placesQuery = byId('placesQuery');
 const $all = document.getElementsByClassName('q')
-const TREE_OPEN_KEYS = [' ', 'Enter'];
 
 // Folder tree
+const TREE_OPEN_KEYS = [' ', 'Enter'];
+
 const addTree = (tree, f, parentNode = null, indent = '') => {
   if (!tree) return;
   for (const t of tree) {
@@ -179,14 +180,14 @@ const setFormValues = () => {
 };
 
 // Event handler
-let isOnChangeParams = false;
+let isChanging = false;
 const onChangeParams = e => {
   if (e.target === $title) {
     checkTitle();
     return;
   }
-  if (isOnChangeParams) return;
-  isOnChangeParams = true;
+  if (isChanging) return;
+  isChanging = true;
   if (e.target.classList.contains('q')) {
     autoTitle();
     setPlacesQuery();
@@ -196,7 +197,7 @@ const onChangeParams = e => {
     autoTitle();
   }
   requestAnimationFrame(() => {
-    isOnChangeParams = false;
+    isChanging = false;
   });
 };
 
