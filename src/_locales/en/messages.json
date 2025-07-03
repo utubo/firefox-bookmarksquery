@@ -51,16 +51,16 @@
     "message": "URL"
   },
   "lastVisited": {
-    "message": "Last visited"
+    "message": "Last Visited"
   },
-  "mostVisited": {
-    "message": "Most visited"
+  "visitCount": {
+    "message": "Visit Count"
   },
   "createdAt": {
-    "message": "Created at"
+    "message": "Date Bookmarked"
   },
   "taggedAt": {
-    "message": "Tagged at"
+    "message": "Date Tagged"
   },
   "sortBy": {
     "message": "Sort by value"

@@ -53,7 +53,7 @@
   "lastVisited": {
     "message": "アクセス日時"
   },
-  "mostVisited": {
+  "visitCount": {
     "message": "アクセス回数"
   },
   "createdAt": {
