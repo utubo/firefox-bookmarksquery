@@ -20,6 +20,9 @@
   "sort": {
     "message": "ソート"
   },
+  "keyword": {
+    "message": "キーワード"
+  },
   "tag": {
     "message": "タグ"
   },

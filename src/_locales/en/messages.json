@@ -20,6 +20,9 @@
   "sort": {
     "message": "Sort"
   },
+  "keyword": {
+    "message": "Keyword"
+  },
   "tag": {
     "message": "Tag"
   },
