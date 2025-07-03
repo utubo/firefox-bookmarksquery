@@ -1,13 +1,13 @@
 "use strict";
 
 browser.menus.create({
-	id: 'bookmark_query_add',
+	id: 'bookmarks_query_add',
 	contexts: ['bookmark'],
 	title: browser.i18n.getMessage('addQuery'),
 });
 
 browser.menus.create({
-	id: 'bookmark_query_edit',
+	id: 'bookmarks_query_edit',
 	contexts: ['bookmark'],
 	title: browser.i18n.getMessage('editQuery'),
 	visible: false,
@@ -17,8 +17,8 @@ browser.menus.onShown.addListener(async info => {
 	if (info.contexts[0] !== 'bookmark') return;
 	const [bookmark] = await browser.bookmarks.get(info.bookmarkId);
 	const isQuery = bookmark.type === 'bookmark' &&  bookmark.url.startsWith('place:');
-	browser.menus.update('bookmark_query_add', { visible: !isQuery });
-	browser.menus.update('bookmark_query_edit', { visible: isQuery });
+	browser.menus.update('bookmarks_query_add', { visible: !isQuery });
+	browser.menus.update('bookmarks_query_edit', { visible: isQuery });
 	browser.menus.refresh();
 });
 
@@ -54,7 +54,7 @@ const createParams = async () => {
 	return {
 		bookmark: {
 			parentId: parentId,
-			id: menuItemId === 'bookmark_query_edit' ? bookmark.id : '',
+			id: menuItemId === 'bookmarks_query_edit' ? bookmark.id : '',
 			title: bookmark.title,
 			url: bookmark.url,
 		},
