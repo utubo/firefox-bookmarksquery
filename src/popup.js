@@ -241,7 +241,7 @@ const init = async () => {
     $title.value = popupArgs.bookmark.title;
     $placesQuery.value = popupArgs.bookmark.url;
     setFormValues();
-    byId('restartRequired').style.display = 'inline';
+    byId('restartRequired').classList.remove('hidden');
   } else {
     selectedParents = [popupArgs.bookmark.parentId];
     $parent.value = selectedParents[0];
