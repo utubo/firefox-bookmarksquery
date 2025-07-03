@@ -20,7 +20,7 @@
   "sort": {
     "message": "Sort"
   },
-  "keyword": {
+  "terms": {
     "message": "Keyword"
   },
   "tag": {

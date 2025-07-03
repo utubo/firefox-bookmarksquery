@@ -68,7 +68,7 @@ const onSelectParent = () => {
 // Title
 const createTitle = () => {
   const items = [];
-  for (const id of ['sort', 'tag']) {
+  for (const id of ['sort', 'terms', 'tag']) {
     const f = byId(id);
     if (!f?.value) continue;
     if (id === 'sort') {
@@ -181,19 +181,23 @@ const setFormValues = () => {
 // Event handler
 let isOnChangeParams = false;
 const onChangeParams = e => {
+  if (e.target === $title) {
+    checkTitle();
+    return;
+  }
   if (isOnChangeParams) return;
   isOnChangeParams = true;
-  requestAnimationFrame(() => {
-    isOnChangeParams = false;
-  });
   if (e.target.classList.contains('q')) {
     autoTitle();
     setPlacesQuery();
-  } else if (e.target.id = 'placesQuery') {
+  } else if (e.target === $placesQuery) {
     checkTitle();
     setFormValues();
     autoTitle();
   }
+  requestAnimationFrame(() => {
+    isOnChangeParams = false;
+  });
 };
 
 const onSubmit = async () => {

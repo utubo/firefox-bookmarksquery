@@ -20,7 +20,7 @@
   "sort": {
     "message": "ソート"
   },
-  "keyword": {
+  "terms": {
     "message": "キーワード"
   },
   "tag": {
