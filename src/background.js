@@ -45,9 +45,10 @@ const createTree = nodes => {
 }
 
 const createParams = async () => {
-	const [bookmark] = await browser.bookmarks.get(bookmarkId);
 	const tree = createTree(await browser.bookmarks.getTree());
 	tree[0].title = browser.i18n.getMessage('allBookmarks');
+	tree[0].type = 'folder';
+	const bookmark = bookmarkId && (await browser.bookmarks.get(bookmarkId))[0] || tree[0];
 	const parentId = bookmark.type === 'folder'
 		? bookmark.id
 		: bookmark.parentId ?? tree[0].id;
