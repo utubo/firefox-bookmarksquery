@@ -18,19 +18,22 @@ const $all = document.getElementsByClassName('q')
 // Folder tree
 const TREE_OPEN_KEYS = [' ', 'Enter'];
 
-const addTree = (tree, f, parentNode = null, indent = '') => {
+// NOTE: indent = 0.5 is default padding in CSS.
+const addTree = (tree, f, parentNode = null, indent = 0.5) => {
   if (!tree) return;
   for (const t of tree) {
     const o = document.createElement('OPTION');
     o.value = t.id;
     o.id = `p-${t.id}`;
-    o.textContent = `${indent}📁${t.title}`;
+    o.textContent = `${t.title}`;
+    o.className = 'folder';
+    o.style.paddingLeft = `${indent}em`;
     o.setAttribute('data-parent', parentNode?.id);
     if (parentNode) {
       o.classList.add('hidden');
     }
     f.appendChild(o);
-    addTree(t.children, f, t, indent + '\u2003');
+    addTree(t.children, f, t, indent + 1);
   }
 };
 
@@ -39,7 +42,6 @@ const openTree = id => {
   if (!t) return {};
   if (t.getAttribute('data-open')) return t;
   t.setAttribute('data-open', true);
-  t.textContent = t.textContent.replace(/📁/, '📂');
   const children = Array.from($parent.options)
     .filter(option => option.getAttribute('data-parent') === id);
   for (const c of children) {

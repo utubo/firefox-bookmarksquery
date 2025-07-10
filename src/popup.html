@@ -71,6 +71,36 @@
       background: var(--accent);
       color: var(--bg2);
     }
+    option::before {
+      display: inline-block;
+      fill: var(--fg);
+      -moz-context-properties: fill;
+      height: 16px;
+      opacity: .8;
+      padding-right: .5em;
+      vertical-align: middle;
+      width: 16px;
+    }
+    .all::before {
+      display: none;
+    }
+    .history::before {
+      content: url(chrome://browser/skin/history.svg);
+    }
+    .tags::before {
+      content: url(chrome://browser/skin/places/tag.svg);
+    }
+    .folder::before {
+      width: 32px;
+      content:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" stroke="context-fill" fill="none" stroke-width="1.5"><path d="M4 4l4 4-4 4"/></svg>')
+        url(chrome://global/skin/icons/folder.svg);
+    }
+    .folder[data-open]::before {
+      content:
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" stroke="context-fill" fill="none" stroke-width="1.5"><path d="M2 6l4 4 4-4"/></svg>')
+        url(chrome://global/skin/icons/folder.svg);
+    }
   }
   .loading option {
     opacity: 0;
@@ -118,9 +148,9 @@
   <div class="sub" tabindex="-1">
     <label class="i18n" for="parent">searchTarget</label>
     <select id="parent" class="q loading" size="4" multiple>
-      <option class="i18n" value="">all</option>
-      <option class="i18n" value="history">history</option>
-      <option class="i18n" value="tags">tags</option>
+      <option class="i18n all" value="">all</option>
+      <option class="i18n history" value="history">history</option>
+      <option class="i18n tags" value="tags">tags</option>
     </select>
 
     <label class="i18n" for="sort">sort</label>
