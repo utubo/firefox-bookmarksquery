@@ -234,7 +234,7 @@ const init = async () => {
   const pre = await browser.runtime.sendMessage({ method: 'pre' });
 
   if (pre.menuItemId === 'bookmarks_query_edit') {
-    byId('restartRequired').classList.remove('hidden');
+    byId('submit').textContent = browser.i18n.getMessage('updateRestartRequired');
   }
 
   popupArgs = await browser.runtime.sendMessage({ method: 'get' });

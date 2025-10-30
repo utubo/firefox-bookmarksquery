@@ -68,8 +68,8 @@
   "save": {
     "message": "保存"
   },
-  "restartRequired": {
-    "message": "(Firefoxの再起動が必要です)"
+  "updateRestartRequired": {
+    "message": "更新(Firefoxの再起動が必要です)"
   }
 }
 
