@@ -231,12 +231,13 @@ byId('submit').addEventListener('click', onSubmit);
 
 // Main
 const init = async () => {
-  popupArgs = await browser.runtime.sendMessage({ method: 'get' });
+  const pre = await browser.runtime.sendMessage({ method: 'pre' });
 
-  // Setup button
-  if (popupArgs.bookmark.id) {
+  if (pre.menuItemId === 'bookmarks_query_edit') {
     byId('restartRequired').classList.remove('hidden');
   }
+
+  popupArgs = await browser.runtime.sendMessage({ method: 'get' });
 
   // Setup parent tree
   const f = document.createDocumentFragment();

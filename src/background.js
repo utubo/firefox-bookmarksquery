@@ -65,6 +65,9 @@ const createParams = async () => {
 
 const msgHandler = async (msg, _, sendResponse) => {
   switch (msg.method) {
+    case 'pre':
+      sendResponse({ menuItemId: menuItemId });
+      break;
     case 'get':
       sendResponse(await createParams());
       break;
