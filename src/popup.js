@@ -233,6 +233,11 @@ byId('submit').addEventListener('click', onSubmit);
 const init = async () => {
   popupArgs = await browser.runtime.sendMessage({ method: 'get' });
 
+  // Setup button
+  if (popupArgs.bookmark.id) {
+    byId('restartRequired').classList.remove('hidden');
+  }
+
   // Setup parent tree
   const f = document.createDocumentFragment();
   addTree(popupArgs.tree, f);
@@ -243,7 +248,6 @@ const init = async () => {
     $title.value = popupArgs.bookmark.title;
     $placesQuery.value = popupArgs.bookmark.url;
     setFormValues();
-    byId('restartRequired').classList.remove('hidden');
   } else {
     selectedParents = [popupArgs.bookmark.parentId];
     $parent.value = selectedParents[0];
