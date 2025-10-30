@@ -1,15 +1,15 @@
 {
   "extensionName": {
-    "message": "ブックマーククエリ"
+    "message": "ブックマーククエリー"
   },
   "extensionDescription": {
-    "message": "ブックマークメニューに「クエリを追加」を追加します"
+    "message": "ブックマークメニューに「クエリーを追加」を追加します"
   },
   "addQuery": {
-    "message": "クエリを追加"
+    "message": "クエリーを追加"
   },
   "editQuery": {
-    "message": "クエリを編集"
+    "message": "クエリーを編集"
   },
   "title": {
     "message": "名前"
@@ -30,7 +30,7 @@
     "message": "件数"
   },
   "queryAdvanced": {
-    "message": "実行クエリ(高度な設定)"
+    "message": "実行クエリー(高度な設定)"
   },
   "all": {
     "message": "全て"
