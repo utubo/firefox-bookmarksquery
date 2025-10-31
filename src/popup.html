@@ -7,6 +7,7 @@
     --bg: #fff;
     --fg: #000;
     --accent: #0062fa;
+    --accent-hover: #005dcb;
     --bg2: #fff;
     --bd: #9f9ea1;
   }
@@ -45,7 +46,7 @@
     appearance: none;
     background: var(--bg2);
     border: none;
-    border-radius: .4em;
+    border-radius: .3em;
     box-sizing: border-box;
     color: var(--fg);
     margin: .2em 0 1em 2px;
@@ -114,10 +115,13 @@
   #submit {
     background: var(--accent);
     border: none;
-    border-radius: .4em;
+    border-radius: .3em;
     border-color: var(--accent);
     color: var(--bg2);
     padding: .5em 1em;
+  }
+  #submit:hover {
+    background: var(--hover);
   }
   #submit:focus {
     outline: 4px double;
@@ -128,6 +132,7 @@
       --bg: #42414d;
       --fg: #fbfbfe;
       --accent: #00cadb;
+      --accent-hover: #61dce9;
       --bg2: #23222b;
       --bd: #7c7b82;
     }
